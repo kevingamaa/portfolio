@@ -1,9 +1,32 @@
+
+@keyframes fall {
+    from {
+        top: -50%;
+        opacity: 1;
+    }
+    to {
+        top: 150%;
+    }
+}
 header {
     min-height: 100vh;
     background:#000;
+    position: relative;
+    overflow: hidden;
     .matrix-letters {
         position:absolute; 
         color:#090; 
+        z-index: 10;
         text-align:center;
+        animation: fall 10s ;
+        // display: none;
+        opacity: 0;
+        &.white-letters {
+            color: #fff;
+        }
+       
+        .numbers:last-child {
+            color: #fff;
+        }
     }
 }

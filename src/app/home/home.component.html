@@ -1,3 +1,15 @@
-<header #matrix>
-
-</header>dsadas
+<header (mouseenter)="fallNumbers()" (mouseleave)=" stopNumbers()">
+    <ng-container *ngFor="let piece of matrix">
+        <div class="matrix-letters" [ngStyle]="{left: piece.left, fontSize: piece.font_size}">
+            {{  piece.number  }}
+            <div *ngFor="let number of piece.numbers" class="numbers">
+                {{ number }}
+            </div>
+        </div>
+    </ng-container>
+    <div>
+        <button mat-raised-button (click)="fallNumbers()">
+            
+        </button>
+    </div>
+</header>

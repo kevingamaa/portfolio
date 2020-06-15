@@ -1,115 +1,118 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { Observable, interval, timer, Subscription } from 'rxjs';
+import { timeout, debounceTime, delay } from 'rxjs/operators';
+export type Matrix = {
+    left?: string, 
+    numbers?: number[], 
+    font_size?: string
+};
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-    @ViewChild('matrix') public matrix: ElementRef;
+export class HomeComponent implements OnInit, AfterViewChecked {
     public height: number = 0;
-    constructor() { }
+    public letters: string = '0123456789';
+    public matrix: Matrix[] = [];
+    public left: boolean;
+    public isOn: boolean;
+    public seconds: Subscription;
+    constructor(
+        private dc: ChangeDetectorRef
+    ) { }
 
+    ngAfterViewChecked() {
+        this.dc.detectChanges()
+    }
     ngOnInit() {
-        console.log(this.randomNumbers())
+        // console.log(this.randomNumbers())
+        this.make()
+       
+    }   
 
+    public fallNumbers() {
+        if(!this.isOn) {
+            const seconds = interval(100);
+            this.seconds = seconds.subscribe(() => {
+                this.make();
+            })
+            this.isOn = true;
+        }
     }
 
+    public stopNumbers() {
+        if(this.isOn) {
+            this.seconds.unsubscribe();
+            this.isOn = false;
+        }
+    }
 
-    public randomNumbers() {
-        let num: any = Math.random().toLocaleString().substr(-1, 2);
-        num = Math.random() * num;
-        return parseInt(num);
+    public randomNumbers(l = 4) {
+        let num: any = Math.random().toLocaleString().substr(-1, l);
+        return num;
+    }
+
+    public  getLeft() {
+        let left = ((this.randomNumbers() * 11) + Math.random() * this.randomNumbers(1));
+        if(this.left) {
+            left = left - 10;
+            this.left = false;
+        }
+        this.left = true;
+        return left + '%';
     }
 
     public make() {
-        if (this.height == 0) {
-            this.height = 100;
-        }
-        let tfont = this.randomNumbers();
-        let left = this.randomNumbers() * 10;
-        let c: number;
-        for (let index = 0; index < 1; index++) {
-            c++;
-            let top = index * tfont;
-            let n = `c${c+index}`;
-            let divTag = document.createElement('div');
-            if(index == 0) {
-                divTag.style.fontSize = tfont+"px";
-                divTag.style.top=top+"px";
-                divTag.style.left=left+"px";
-                divTag.className = "matrix-letters";
-                divTag.id = n;
+        let matrix: Matrix = {
+            numbers: [1,2,3,4,5,9,5,1,2,3],
+            left: this.getLeft()
+        };
+        let number = this.randomNumbers();
+        let idx=  this.matrix.push(matrix) -1;
+        let font = Number(String(number) + '0') / 2;
+      
+        this.matrix[idx].font_size = font + 'px';
+        const seconds = interval(100);
+        const subs = seconds.subscribe(() => {
+            if(this.matrix[idx]) {
+                this.matrix[idx].numbers.shift();
+                this.matrix[idx].numbers.push(   this.randomNumbers());
+            } else {
+                subs.unsubscribe();
             }
-        }
+        });
+
+        const timeout = setTimeout(() => {
+            this.matrix.shift();
+            clearTimeout(timeout)
+        }, 4000);
     }
+
 
 }
 
-// function aleatorio(menor, maior) {
-//   numPossibilidades = maior - menor;
-//   aleat = Math.random() * numPossibilidades;
-//   aleat = Math.floor(aleat);
-//   return parseInt(menor) + aleat;
+// function cai(nome,top,cx,tfont){
+// 	var ct=top;
+	
+	
+// 	var tempo = window.setInterval(function(){
+// 		document.getElementById(nome).innerHTML = l[cx];
+// 		cx++;
+// 		if(cx == l.length){
+// 		cx=0;
+// 		}
+		
+	
+// 		document.getElementById(nome).style.top=ct+"px";
+// 		ct=ct+tfont;
+	
+// 		if(ct>altura-tfont){	
+// 			clearInterval(tempo);
+
+// 			document.body.removeChild(document.getElementById(nome));
+// 		}
+		
+// 	}, 100);
 // }
 
-// var c = 0;
-// texto = "0123456789";
-// //texto = prompt ("Texto");
-// var l = texto.split("");
-
-
-// function cria() {
-//   if (altura == 0) {
-//     altura = 300;
-//   }
-//   var tfont = aleatorio(10, 30);
-//   var left = aleatorio(0, largura - tfont);
-
-//   for (contp = 0; contp < l.length; contp++) {
-//     c++;
-//     var top = -contp * tfont;
-//     var n = "c" + c + contp;
-//     var divTag = document.createElement("div");
-//     if (contp == 0) { divTag.style.color = "#FFF" }
-//     divTag.style.fontSize = tfont + "px";
-//     divTag.style.top = top + "px";
-//     divTag.style.left = left + "px";
-//     divTag.className = "letra";
-//     divTag.id = n;
-
-//     document.body.appendChild(divTag);
-
-//     cai(n, top, contp, tfont);
-//   }
-// }
-
-
-
-
-// function cai(nome, top, cx, tfont) {
-//   var ct = top;
-
-
-//   var tempo = window.setInterval(function () {
-//     document.getElementById(nome).innerHTML = l[cx];
-//     cx++;
-//     if (cx == l.length) {
-//       cx = 0;
-//     }
-
-
-//     document.getElementById(nome).style.top = ct + "px";
-//     ct = ct + tfont;
-
-//     if (ct > altura - tfont) {
-//       clearInterval(tempo);
-
-//       document.body.removeChild(document.getElementById(nome));
-//     }
-
-//   }, 100);
-// }
-
-
-// window.setInterval(function () { cria() }, 100);
