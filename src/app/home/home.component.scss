@@ -8,6 +8,27 @@
         top: 150%;
     }
 }
+@keyframes slideInRight {
+    from {
+        transform: translateX(-500px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(500px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
 header {
     min-height: 100vh;
     background:#000;
@@ -29,4 +50,63 @@ header {
             color: #fff;
         }
     }
+
+
+
+    .header-info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        color: #fff;
+        z-index: 999;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        .pill-information {
+            width: 100%;
+            text-align: center;
+            min-height: 63px;
+            
+        }
+
+        .show-pills {
+            .blue-one {
+                animation: slideInRight 1s;
+            }
+            .red-one  {
+                animation: slideInLeft 1s ;
+            }
+
+            .pill {
+                opacity: 1;
+            }
+        }
+
+        .pill {
+            border-radius: 50px;
+            opacity: 0;
+            &.red-one {
+                background:linear-gradient(to bottom, #c7232b 5%, #f13a3a 100%);
+             
+                &:hover {
+                    background:linear-gradient(to bottom, #f13a3a 5%,  #c7232b 100%);
+                }
+            }
+
+            &.blue-one {
+                background:linear-gradient(to bottom, #0e6deb 5%, #3686ee 100%);
+                &:hover {
+                    background:linear-gradient(to bottom, #3686ee 5%,  #0e6deb 100%);
+                    transition: 500ms;
+                }
+            }
+        }
+    }
 }
+
+
+

@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     public left: boolean;
     public isOn: boolean;
     public seconds: Subscription;
+    public startAnother: boolean;
+    public showPills: boolean;
     constructor(
         private dc: ChangeDetectorRef
     ) { }
@@ -54,7 +56,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     }
 
     public  getLeft() {
-        let left = ((this.randomNumbers() * 11) + Math.random() * this.randomNumbers(1));
+        let left = ((this.randomNumbers() * 10) + Math.random() * this.randomNumbers(1));
         if(this.left) {
             left = left - 10;
             this.left = false;

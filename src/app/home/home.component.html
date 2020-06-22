@@ -1,4 +1,4 @@
-<header (mouseenter)="fallNumbers()" (mouseleave)=" stopNumbers()">
+<header *ngIf="false">
     <ng-container *ngFor="let piece of matrix">
         <div class="matrix-letters" [ngStyle]="{left: piece.left, fontSize: piece.font_size}">
             {{  piece.number  }}
@@ -7,9 +7,44 @@
             </div>
         </div>
     </ng-container>
-    <div>
-        <button mat-raised-button (click)="fallNumbers()">
-            
-        </button>
+    <div class="header-info">
+        <div fxLayout="column">
+            <h1 fxLayoutAlign="center center">
+                Hello! <br> my name's Kevin and <br>I have a question for you
+            </h1>
+            <h2 class="" fxLayoutAlign="space-around center">
+                <ngx-typed-js *ngIf="!showPills" [strings]="['Which pill do you want?']" [startDelay]="300"
+                    (completed)="startAnother = true" [showCursor]="false" [typeSpeed]="50">
+                    <span class="typing"></span>
+                </ngx-typed-js>
+                <ngx-typed-js *ngIf="showPills" [strings]="['Choose wisely']" [startDelay]="300"
+                    (completed)="startAnother = true" [showCursor]="false" [typeSpeed]="50">
+                    <span class="typing"></span>
+                </ngx-typed-js>
+            </h2>
+            <div fxLayoutAlign="space-around center" [ngClass]="{'show-pills': showPills}">
+                <button mat-raised-button color="warn" class="pill red-one">
+                    Full experience
+                </button>
+                <button mat-raised-button color="primary" class="pill blue-one">
+                    Resumed experience
+                </button>
+            </div>
+            <p *ngIf="startAnother" fxLayoutAlign="space-around center" class="pill-information" fxFlex="100">
+                <ngx-typed-js
+                    [strings]="['The red one will show you everything about me in a full way 
+                 with examples, project references and all my skills in detail. <br> The blue one will download my cv with resumed information.']"
+                    [typeSpeed]="20" [contentType]="'html'" (completed)="fallNumbers(); showPills = true">
+                    <span class="typing"></span>
+                </ngx-typed-js>
+            </p>
+        </div>
     </div>
 </header>
+<section role="perfil" class="p-2">
+    <app-profile></app-profile>
+</section>
+
+<section role="skills" class="p-2">
+    <app-skills></app-skills>
+</section>

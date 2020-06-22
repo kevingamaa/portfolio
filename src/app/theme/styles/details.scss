@@ -1,0 +1,35 @@
+
+
+$border-size: 4px;
+.cool-border {
+    padding: 20px;
+    position: relative;
+    
+    .border {
+        &::before, &::after  {
+            content: '';
+            position: absolute;
+            background-color: $primary;
+        }
+
+        &::before {
+            height:  40%;
+            width: $border-size; 
+        }
+        &::after {
+            height: $border-size;
+            width: 40%;
+        }
+        &.bottom-left::before, &.bottom-left::after {
+            left: 0;
+            bottom: 0;
+        }
+       
+
+        &.top-right::before,  &.top-right::after {
+            right: 0;
+            top: 0;
+        }
+    }
+
+}

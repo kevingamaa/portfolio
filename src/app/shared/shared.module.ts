@@ -28,8 +28,10 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatSliderModule} from '@angular/material/slider';
 import { MatStepperModule} from '@angular/material/stepper';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 const modules = [
+    FlexLayoutModule,
     MatDividerModule,
     MatTableModule,
     MatPaginatorModule,
