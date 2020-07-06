@@ -1,0 +1,23 @@
+@import 'variables';
+
+#admin-app {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+
+    mat-drawer-container {
+        width: 100%;
+    }
+
+    .sidebar {
+        width: $sidebar-size;
+        height: 100vh;
+    }
+
+
+    main {
+        height: 100vh;
+    }
+}

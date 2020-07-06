@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ProjectsRoutingModule } from './projects-routing.module';
-import { ProjectNeComponent } from './project-ne/project-ne.component';
+import { ProjectsComponent } from './projects.component';
+import { ProjerojectNeComponent } from './projeroject-ne/projeroject-ne.component';
 
 
 @NgModule({
-  declarations: [ProjectNeComponent],
+  declarations: [ProjectsComponent, ProjerojectNeComponent],
   imports: [
     CommonModule,
     ProjectsRoutingModule

@@ -9,6 +9,7 @@ import { ProfileComponent } from './home/profile/profile.component';
 import { SkillsComponent } from './home/skills/skills.component';
 import { SharedModule } from '../shared/shared.module';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { NgxTypedJsModule } from 'ngx-typed-js';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     CommonModule,
     WebsiteRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxTypedJsModule
   ]
 })
 export class WebsiteModule { }
