@@ -12,4 +12,7 @@ export class SkillsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public formatLabel(val) {
+    return 
+  }
 }
