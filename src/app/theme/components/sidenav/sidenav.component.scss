@@ -1,0 +1,20 @@
+
+@import 'variables';
+#sidenav {
+    position: absolute;
+    top: $toolbar-size-h;
+    left: 0;
+    width: 100%;
+    height: calc(100% - #{$toolbar-size-h});
+
+
+    .nav-item {
+        
+    }
+    .nav-item {
+        border-bottom: 1px solid rgba(#000, 0.2);
+        width: 100%;
+        text-align: left;
+        padding-top: 10px;
+    }
+}

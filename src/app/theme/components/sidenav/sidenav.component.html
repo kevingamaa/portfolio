@@ -1,1 +1,13 @@
-<p>sidenav works!</p>
+<div id="sidenav">
+    <div fxLayout="row wrap" fxLayoutAlign="center start" fxLayoutGap="2px">
+        <div fxFlex="100" class="nav-list pt-2">
+            <button mat-button class="nav-item">
+               Dashboard
+            </button>
+            <button mat-button class="nav-item" [routerLink]="['/admin/projects']">
+                Projetos
+            </button>
+        </div>
+       
+    </div>
+</div>
