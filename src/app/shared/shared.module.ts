@@ -17,20 +17,24 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatRippleModule, MatNativeDateModule } from '@angular/material/core';
+import { MatRippleModule, MatNativeDateModule, MatDateFormats } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatExpansionModule} from '@angular/material/expansion';
-import { MatProgressBarModule} from '@angular/material/progress-bar';
-import { MatDialogModule} from '@angular/material/dialog';
-import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { MatSliderModule} from '@angular/material/slider';
-import { MatStepperModule} from '@angular/material/stepper';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ContentHeaderComponent } from './content-header/content-header.component';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, SatDatepickerModule } from 'saturn-datepicker'
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter'
 
 const modules = [
+    CommonModule,
     FlexLayoutModule,
     MatDividerModule,
     MatTableModule,
@@ -60,15 +64,31 @@ const modules = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatSliderModule,
-    MatToolbarModule
+    MatToolbarModule,
+    SatDatepickerModule
 ];
 
 
 
 @NgModule({
-    declarations: [],
-    exports: [...modules],
+    declarations: [ContentHeaderComponent],
+    imports: [...modules],
+    exports: [...modules, ContentHeaderComponent],
     providers: [
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+        {
+            provide: MAT_DATE_FORMATS, useValue: {
+                parse: {
+                    dateInput: ['l', 'LL'],
+                },
+                display: {
+                    dateInput: 'L',
+                    monthYearLabel: 'MMM YYYY',
+                    dateA11yLabel: 'LL',
+                    monthYearA11yLabel: 'MMMM YYYY',
+                },
+            } as MatDateFormats
+        },
     ]
 })
 export class SharedModule { }

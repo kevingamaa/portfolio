@@ -1,0 +1,28 @@
+<div id="content-header">
+    <mat-card class="shadow-none">
+        <mat-card-content>
+            <div class="default-button" *ngIf="defaultButtons">
+                <mat-form-field *ngIf="openSearch">
+                    <mat-label>Procurar</mat-label>
+                    <input matInput placeholder="Digite aqui..." autocomplete="off" autofocus="off" (keyup)="search($event.target)" >
+                </mat-form-field>
+                <button mat-mini-fab type="button"  
+                color="primary" 
+                (click)="openSearch = !openSearch;"  
+                class="mr-2">
+                    <mat-icon *ngIf="!openSearch">search</mat-icon>
+                    <mat-icon *ngIf="openSearch">close</mat-icon>
+                </button>
+                <button mat-mini-fab type="button"  (click)="addPage()" >
+                    <mat-icon>add</mat-icon>
+                </button>
+            </div>
+
+            <mat-card-title>
+                <ng-content select="[title]"></ng-content>
+            </mat-card-title>
+
+            <ng-content select="[content]"></ng-content>
+        </mat-card-content>
+    </mat-card>
+</div>

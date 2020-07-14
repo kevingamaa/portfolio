@@ -1,0 +1,67 @@
+<app-content-header [addRoute]="['/admin/skills/new']" [defaultButtons]="false">
+    <ng-container title>
+        <a href="javascript:history.back()" mat-button>
+            <mat-icon>arrow_back</mat-icon>
+        </a> {{ neType }} Skills
+    </ng-container>
+</app-content-header>
+
+<form [formGroup]="form" class="mt-3">
+    <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px" >
+        <div fxFlex="30" fxFlex.xs="100" class="mb-3">
+            <mat-card>
+                <h5>Exemplo</h5>
+                {{ form.get('name').value }} <span [innerHTML]="form.get('icon').value"></span>
+                <mat-progress-bar mode="determinate" [value]="form.get('level_percent').value"></mat-progress-bar>
+            </mat-card>
+        </div>
+        <div fxFlex="80" fxFlex.xs="100">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-subtitle>Formulário</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="10px">
+                        <div fxFlex="40" fxFlex.xs="80">
+                            <mat-form-field class="w-100" [appearance]="appearance">
+                                <mat-label>Nome</mat-label>
+                                <input matInput formControlName="name">
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="40" fxFlex.xs="80">
+                            <mat-slide-toggle color="primary" formControlName="view_name">
+                            </mat-slide-toggle>
+                        </div>
+                        <div fxFlex="10">
+                            <mat-form-field class="w-100" [appearance]="appearance">
+                                <mat-label>Nível em porcentagem</mat-label>
+                                <input matInput formControlName="level_percent">
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="100"></div>
+                        <div fxFlex="25" fxFlex.xs="100">
+                            <mat-form-field class="w-100" [appearance]="appearance">
+                                <mat-label>Icon</mat-label>
+                                <input matInput formControlName="icon">
+                            </mat-form-field>
+                        </div>
+                        <div fxFlex="25" fxFlex.xs="80">
+                            <mat-form-field class="w-100" [appearance]="appearance">
+                                <mat-label>Data de aprendizado</mat-label>
+                                <input matInput formControlName="learned_at" [satDatepicker]="resultPicker" (focus)="resultPicker.open()">
+                                <sat-datepicker #resultPicker [rangeMode]="false" orderPeriodLabel="month">
+                                </sat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxFlex="100"></div>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>Ok</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+
+</form>

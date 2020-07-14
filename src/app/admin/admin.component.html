@@ -8,16 +8,13 @@
             <app-sidenav></app-sidenav>
         </mat-drawer>
         <mat-drawer-content>
-            <mat-toolbar>
-                <span></span>
-            </mat-toolbar>
-            <main role="admin">
+            <div role="admin" id="admin">
                 <div fxLayout="row" fxLayoutAlign="center center">
                     <div fxFlex="98"  class="pt-3">
                         <router-outlet></router-outlet>
                     </div>
                 </div>
-            </main>
+            </div>
         </mat-drawer-content>
     </mat-drawer-container>
 </div>

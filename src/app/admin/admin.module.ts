@@ -6,7 +6,6 @@ import { AdminComponent } from './admin.component';
 import { SharedModule } from '../shared/shared.module';
 import { SidenavComponent } from '../theme/components/sidenav/sidenav.component';
 
-
 @NgModule({
   declarations: [
     AdminComponent,
@@ -15,7 +14,10 @@ import { SidenavComponent } from '../theme/components/sidenav/sidenav.component'
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule
+    SharedModule,
+  ],
+  providers: [
+  
   ]
 })
 export class AdminModule { }
