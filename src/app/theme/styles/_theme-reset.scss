@@ -1,0 +1,107 @@
+@import "variables";
+
+@mixin theme-reset($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $foreground: map-get($theme, foreground);
+    $background: map-get($theme, background);
+
+    .bg-primary {
+        @include _mat-toolbar-color($primary);
+
+        &.mat-card-header {
+            margin: -16px;
+            margin-bottom: 16px;
+            color: mat-color($background, card) !important;
+
+            .mat-card-header-text {
+                transform: translateY(7px);
+            }
+
+            .mat-card-subtitle {
+                color: mat-color($background, card) !important;
+            }
+        }
+    }
+
+    .bg-primary-dark {
+        background-color: darken(mat-color($primary), 25);
+    }
+
+    .bg-accent {
+        @include _mat-toolbar-color($accent);
+
+        &.mat-card-header {
+            margin: -16px;
+            margin-bottom: 16px;
+
+            .mat-card-header-text {
+                transform: translateY(7px);
+            }
+
+            .mat-card-subtitle {
+                color: mat-color($background, card) !important;
+            }
+        }
+    }
+
+    .bg-warn {
+        @include _mat-toolbar-color($warn);
+
+        &.mat-card-header {
+            margin: -16px;
+            margin-bottom: 16px;
+            color: mat-color($background, card) !important;
+
+            .mat-card-header-text {
+                transform: translateY(7px);
+            }
+
+            .mat-card-subtitle {
+                color: mat-color($background, card) !important;
+            }
+        }
+    }
+
+    .mat-dialog-container {
+        background: mat-color($background, card) !important;
+        color: mat-color($foreground, base) !important;
+    }
+
+
+    .secondary-text-color {
+        color: mat-color($foreground, secondary-text);
+    }
+
+    .primary-color {
+        color: mat-color($primary) !important;
+    }
+
+    .accent-color {
+        color: mat-color($accent) !important;
+    }
+
+    .warn-color {
+        color: mat-color($warn) !important;
+    }
+
+
+    .has_subs::before {
+        background-color: mat-color($primary);
+    }
+
+    .sub_positions::before {
+        border-color: rgba(mat-color($primary), 0.5);
+    }
+
+    .mat-rgba {
+        .mat-progress-bar-fill::after {
+            background-color:  mat-color($background, card);
+        }
+
+        .mat-progress-bar-buffer {
+            background-color: darken(mat-color($primary), 25);
+        }
+    }
+}

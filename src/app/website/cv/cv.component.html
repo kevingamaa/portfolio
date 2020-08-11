@@ -1,1 +1,191 @@
-<p>cv works!</p>
+
+<section id="cv" class="mx-auto">
+    <mat-toolbar class="mb-4">
+        <button mat-icon-button matTooltip="Download resume" (click)="download(resume)">
+            <mat-icon>cloud_download</mat-icon>
+        </button>
+       <br>
+        <button mat-button class="mx-3" (click)="app.useTheme(theme)" *ngFor="let theme of themes">
+            {{ theme }}
+        </button>
+    </mat-toolbar>
+    <div id="cv-template" #resume>
+        <div fxLayout="row wrap" fxLayoutAlign="start start">
+            <div fxFlex="60" class="px-4">
+                <div fxLayout="row wrap">
+                    <div fxFlex="100" class="cv-text pt-3 pb-2">
+                        <p></p>
+                        Technology lover, self-taught, creative, passionate about teamwork, expert in project
+                        structuring
+                        and data integrity.
+                        4+ years studying technology and 2+ year working on several projects, websites,
+                        <b>CRMs </b> and <b>ERPs</b>.
+                    </div>
+                    <div fxFlex="100" class="section-item">
+                        <hr class="line bg-primary ">
+                        <h3 class="primary-color ">Experience</h3>
+                        <hr class="line bg-primary ">
+
+                        <div fxLayout="row wrap" class="">
+                            <ng-container *ngFor="let experience of experiencies">
+                                <div fxFlex="15" class="mt-1">
+                                    <span class="time-spending">
+                                        {{ experience.started_at | date: 'MMM, y' }} -
+                                    </span>
+                                    <span class="time-spending">
+                                        <ng-container *ngIf="experience.ended_at; else current">
+                                            {{ experience.ended_at | date: 'MMM, y' }}
+                                        </ng-container>
+                                        <ng-template #current>Present</ng-template>
+                                    </span>
+                                </div>
+                                <div fxFlex="80" class="mt-1 has_subs">
+                                    <h4 class="section-title">{{ experience.position }}</h4>
+                                    <i>{{ experience.company }}</i>
+                                    <ul class="info-list">
+                                        <li *ngFor="let info of experience.additional_info">{{ info }}</li>
+                                    </ul>
+
+                                    <div class="sub_positions" *ngFor="let sub of experience.sub_positions">
+                                        <h4>{{ sub.position }}</h4>
+                                        <ul class="info-list">
+                                            <li *ngFor="let info of  sub.additional_info">{{ info }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+                    <div fxFlex="100" class="section-item">
+                        <hr class="line bg-primary ">
+                        <h3 class="primary-color ">Additional Activities</h3>
+                        <hr class="line bg-primary ">
+                        <div fxLayout="row wrap">
+                            <div fxFlex="12">
+
+                            </div>
+                            <div fxFlex="80" class="">
+                                <ul class="info-list">
+                                    <li>Teach programming classes for beginners and advanced students.</li>
+                                    <li>Study the human mind and concepts of artificial intelligence</li>
+                                    <li>Practice Bicycling to keep fit and health. </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div fxFlex="100" class="section-item">
+                        <hr class="line bg-primary ">
+                        <h3 class="primary-color ">Courses</h3>
+                        <hr class="line bg-primary ">
+                        <div fxLayout="row wrap" class="">
+                            <ng-container *ngFor="let course of courses">
+                                <div fxFlex="15" class="mt-2">
+                                    <span class="time-spending">
+                                        {{ course.started_at | date: 'MMM, y' }} -
+                                    </span>
+                                    <span class="time-spending">
+                                        {{ course.ended_at | date: 'MMM, y' }}
+                                    </span>
+                                </div>
+                                <div fxFlex="75" class="mt-1">
+                                    <h4 class="section-title">{{ course.name }}</h4>
+                                    <i>{{ course.company }}</i>
+                                </div>
+                            </ng-container>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div fxFlex class="position-relative" fxFill="100">
+                <mat-card class="bg-primary aside-info">
+                    <div fxLayout="row wrap" fxLayoutGap="10px" class="pl-2 pt-3">
+                        <div fxFlex="100">
+                            <h1 class="mb-1">Vitor Kevin</h1>
+                            <p class="cv-text-2 mb-1">Full-Stack Developer</p>
+                        </div>
+                        <div fxFlex="100" class="cv-text-2 mini-font">
+                            <div class="section-title bg-primary-dark">
+                                <h4>Resume information</h4>
+                            </div>
+                            <div class="mb-0">
+                                <strong>Phone</strong>
+                                <p class="mini-font mt-0 mb-0">+55 (11) 96155-0891</p>
+                            </div>
+                            <div class="my-0">
+                                <strong>E-mail</strong>
+                                <p class="mini-font mt-0 mb-0">vitorkortez@gmail.com</p>
+                            </div>
+                            <div class="my-0">
+                                <strong>Linkedin</strong>
+                                <p class="mini-font mt-0 mb-0">https://www.linkedin.com/in/vitor-kevin-<br>048811165</p>
+                            </div>
+                        </div>
+                        <div fxFlex="100" class="cv-text-2 mini-font">
+                            <div class="section-title bg-primary-dark">
+                                <h4>Languages</h4>
+                            </div>
+                            <div class=" mb-2 skills-level" *ngFor="let skill of languages;">
+                                <strong>{{ skill.name }}</strong>
+                                <div class="mat-rgba ">
+                                    <mat-progress-bar mode="determinate" [value]="skill.level_percent">
+                                    </mat-progress-bar>
+                                    <span class="float-right" *ngIf="skill.level_percent > 100">
+                                        Native speaker
+                                    </span>
+                                    <span class="float-right" *ngIf="skill.level_percent <= 30">
+                                        Basic
+                                    </span>
+                                    <span class="float-right"
+                                        *ngIf="skill.level_percent <= 80 && skill.level_percent > 30">
+                                        High intermediate
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+              
+                        <div fxFlex="100" class="cv-text-2 mini-font">
+                            <div class="section-title bg-primary-dark">
+                                <h4>Hard Skills</h4>
+                            </div>
+                            <div class="  mb-2 skills-level"
+                                *ngFor="let skill of getSkill({field: 'category', value: ['general' ]});">
+                                <strong>{{ skill.name }}</strong>
+                                <div class="mat-rgba ">
+                                    <mat-progress-bar mode="determinate" [value]="skill.level_percent">
+                                    </mat-progress-bar>
+                                    <span class="float-right">
+                                        {{ getLevel(skill.level_percent) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div fxFlex="100" class="cv-text-2 mini-font">
+                            <div class="section-title bg-primary-dark">
+                                <h4>Programming languages</h4>
+                            </div>
+                            <div class="  mb-2 skills-level"
+                                *ngFor="let skill of getSkill({field: 'category', orderBy: 'level_percent' ,value: ['framework', 'programming language', 'database' ]});">
+                                <strong>{{ skill.name }}</strong>
+                                <div class="mat-rgba ">
+                                    <mat-progress-bar mode="determinate" [value]="skill.level_percent">
+                                    </mat-progress-bar>
+                                    <span class="float-right">
+                                        {{ getLevel(skill.level_percent) }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
+                <div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

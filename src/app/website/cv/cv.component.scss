@@ -1,0 +1,155 @@
+#cv {
+    margin-top: 10px;
+    width: 50%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', sans-serif !important;
+    font-size: 14px;
+
+    h1 {
+        font-size: 18px;
+    }
+
+    h3 {
+        font-size: 14px;
+        margin-bottom: 0;
+        margin-top: 0;
+        font-weight: bold;
+    }
+
+
+    h4 {
+        font-size: 13px;
+        font-weight: 500;
+        color: #2c2c2c;
+        margin-bottom: 0px;
+    }
+
+    i {
+        opacity: 0.7;
+        font-size: 11px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    .section-item {
+        padding-bottom: 7px;
+
+        .section-title {
+            margin-bottom: -6px;
+        }
+    }
+
+    .aside-info {
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        padding-bottom: 30px;
+
+        .skills-level {
+            width: 55%;
+        }
+
+        span.float-right {
+            font-size: 9px;
+            width: 100%;
+            text-align: right;
+            height: 15px;
+        }
+
+        .section-title {
+            position: relative;
+            width: 115%;
+            left: -5%;
+            padding: 2px 21px 2px 5%;
+            margin-bottom: 10px;
+            margin-top: 11px;
+
+            h4 {
+                color: #fff;
+                font-size: 16px;
+            }
+
+        }
+    }
+
+    .line {
+        opacity: 0.1;
+        height: 1px;
+        margin: 0 0;
+    }
+
+    .time-spending {
+        display: block;
+        opacity: 0.6;
+        font-size: 11px;
+    }
+
+    .cv-text {
+
+        opacity: 0.7;
+    }
+
+    .cv-text-2 {
+        opacity: 0.9;
+    }
+
+
+    *[class*="cv-text"] {
+
+        &.mini-font,
+        .mini-font {
+            font-size: 10px;
+        }
+    }
+
+    .info-list {
+        opacity: 0.7;
+        list-style-type: circle;
+        margin: 2px 0;
+
+        li {
+            margin-top: 2px;
+            font-size: 13px;
+        }
+    }
+
+
+
+
+
+    .has_subs {
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 54px;
+            height: calc(100% - 82px);
+            width: 3px;
+            opacity: 0.5;
+        }
+
+        .sub_positions {
+            margin-left: 21px;
+            position: relative;
+
+            &::before {
+                content: "";
+                position: absolute;
+                width: 13px;
+                height: 13px;
+                background: white;
+                left: -28px;
+                top: 4px;
+                border-radius: 50%;
+                border-width: 2px;
+                border-style: solid;
+            }
+        }
+    }
+
+
+
+}

@@ -1,11 +1,13 @@
-<header *ngIf="false">
+<header >
     <ng-container *ngFor="let piece of matrix">
         <div class="matrix-letters" [ngStyle]="{ left: piece.left, fontSize: piece.font_size}">
-            <div *ngFor="let number of piece.numbers" class="numbers">
+            <div *ngFor="let number of piece.numbers" class="numbers" [style.margin-top]="piece.margin_top">
                 {{ number }}
             </div>
         </div>
+      
     </ng-container>
+  
     <div class="header-info">
         <div fxLayout="column">
             <h1 fxLayoutAlign="center center">

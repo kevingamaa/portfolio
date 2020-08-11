@@ -4,7 +4,8 @@ import { timeout, debounceTime, delay } from 'rxjs/operators';
 export type Matrix = {
     left?: string, 
     numbers?: number[], 
-    font_size?: string
+    font_size?: string,
+    margin_top?: string 
 };
 @Component({
     selector: 'app-home',
@@ -35,7 +36,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
 
     public fallNumbers() {
         if(!this.isOn) {
-            const seconds = interval(100);
+            const seconds = interval(500);
             this.seconds = seconds.subscribe(() => {
                 this.make();
             })
@@ -75,6 +76,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
         let font = Number(String(number) + '0') / 2;
       
         this.matrix[idx].font_size = font + 'px';
+        this.matrix[idx].margin_top = font/2 + 'px';
         const seconds = interval(100);
         const subs = seconds.subscribe(() => {
             if(this.matrix[idx]) {

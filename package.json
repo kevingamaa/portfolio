@@ -25,6 +25,8 @@
     "@angular/router": "~9.1.11",
     "@fortawesome/fontawesome-free": "^5.13.1",
     "bootstrap": "^4.5.0",
+    "dom-to-image": "^2.6.0",
+    "jspdf": "^1.5.3",
     "ngx-typed-js": "^2.0.0",
     "rxjs": "~6.5.5",
     "saturn-datepicker": "^8.0.5",

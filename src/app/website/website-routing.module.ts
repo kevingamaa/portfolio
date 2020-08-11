@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { WebsiteComponent } from './website.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
+import { CvComponent } from './cv/cv.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,9 @@ const routes: Routes = [
       },
       {
         path: 'home', component: HomeComponent
+      },
+      {
+        path: 'cv', component: CvComponent
       },
       {
         path: 'not-found', component: NotFoundComponent
